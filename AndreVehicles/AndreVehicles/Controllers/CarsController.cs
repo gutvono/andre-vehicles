@@ -5,19 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ApiCarProject.Data;
+using AndreVehicles.Data;
 using Model;
-using System.Drawing;
 
-namespace ApiCarProject.Controllers
+namespace AndreVehicles.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CarsController : ControllerBase
     {
-        private readonly ApiCarProjectContext _context;
+        private readonly AndreVehiclesContext _context;
 
-        public CarsController(ApiCarProjectContext context)
+        public CarsController(AndreVehiclesContext context)
         {
             _context = context;
         }
@@ -27,19 +26,6 @@ namespace ApiCarProject.Controllers
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
             return await _context.Car.ToListAsync();
-        }
-
-        [HttpGet("color/{color}")]
-        public async Task<ActionResult<IEnumerable<Car>>> GetCarsByColor(string color)
-        {
-            var cars = await _context.Car.Where(x => x.Color == color).ToListAsync();
-
-            if (cars == null || !cars.Any())
-            {
-                return NotFound();
-            }
-
-            return cars;
         }
 
         // GET: api/Cars/5
