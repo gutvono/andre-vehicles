@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Pixes
-        [HttpGet]
+        [HttpGet("pixes/entity/")]
         public async Task<ActionResult<IEnumerable<Pix>>> GetPix()
         {
             return await _context.Pix.ToListAsync();
         }
 
-        // GET: api/Pixes/5
-        [HttpGet("{id}")]
+        [HttpGet("pixes/entity/{id}")]
         public async Task<ActionResult<Pix>> GetPix(int id)
         {
             var pix = await _context.Pix.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return pix;
         }
 
-        // PUT: api/Pixes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("pixes/entity/{id}")]
         public async Task<IActionResult> PutPix(int id, Pix pix)
         {
             if (id != pix.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Pixes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("pixes/entity/")]
         public async Task<ActionResult<Pix>> PostPix(Pix pix)
         {
             _context.Pix.Add(pix);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetPix", new { id = pix.Id }, pix);
         }
 
-        // DELETE: api/Pixes/5
-        [HttpDelete("{id}")]
+        [HttpDelete("pixes/entity/{id}")]
         public async Task<IActionResult> DeletePix(int id)
         {
             var pix = await _context.Pix.FindAsync(id);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Roles
-        [HttpGet]
+        [HttpGet("roles/entity/")]
         public async Task<ActionResult<IEnumerable<Role>>> GetRole()
         {
             return await _context.Role.ToListAsync();
         }
 
-        // GET: api/Roles/5
-        [HttpGet("{id}")]
+        [HttpGet("roles/entity/{id}")]
         public async Task<ActionResult<Role>> GetRole(int id)
         {
             var role = await _context.Role.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return role;
         }
 
-        // PUT: api/Roles/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("roles/entity/{id}")]
         public async Task<IActionResult> PutRole(int id, Role role)
         {
             if (id != role.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Roles
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("roles/entity/")]
         public async Task<ActionResult<Role>> PostRole(Role role)
         {
             _context.Role.Add(role);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetRole", new { id = role.Id }, role);
         }
 
-        // DELETE: api/Roles/5
-        [HttpDelete("{id}")]
+        [HttpDelete("roles/entity/{id}")]
         public async Task<IActionResult> DeleteRole(int id)
         {
             var role = await _context.Role.FindAsync(id);

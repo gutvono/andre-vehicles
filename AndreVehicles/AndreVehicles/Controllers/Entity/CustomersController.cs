@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Customers
-        [HttpGet]
+        [HttpGet("customers/entity/")]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
             return await _context.Customer.ToListAsync();
         }
 
-        // GET: api/Customers/5
-        [HttpGet("{id}")]
+        [HttpGet("customers/entity/{id}")]
         public async Task<ActionResult<Customer>> GetCustomer(string id)
         {
             var customer = await _context.Customer.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return customer;
         }
 
-        // PUT: api/Customers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("customers/entity/{id}")]
         public async Task<IActionResult> PutCustomer(string id, Customer customer)
         {
             if (id != customer.Document)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Customers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("customers/entity/")]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
             _context.Customer.Add(customer);
@@ -98,8 +92,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetCustomer", new { id = customer.Document }, customer);
         }
 
-        // DELETE: api/Customers/5
-        [HttpDelete("{id}")]
+        [HttpDelete("customers/entity/{id}")]
         public async Task<IActionResult> DeleteCustomer(string id)
         {
             var customer = await _context.Customer.FindAsync(id);

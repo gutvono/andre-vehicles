@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Addresses
-        [HttpGet]
+        [HttpGet("addresses/entity")]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddress()
         {
             return await _context.Address.ToListAsync();
         }
 
-        // GET: api/Addresses/5
-        [HttpGet("{id}")]
+        [HttpGet("addresses/entity/{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return address;
         }
 
-        // PUT: api/Addresses/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("addresses/entity/{id}")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
             if (id != address.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Addresses
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("addresses/entity/")]
         public async Task<ActionResult<Address>> PostAddress(Address address)
         {
             _context.Address.Add(address);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetAddress", new { id = address.Id }, address);
         }
 
-        // DELETE: api/Addresses/5
-        [HttpDelete("{id}")]
+        [HttpDelete("addresses/entity/{id}")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);

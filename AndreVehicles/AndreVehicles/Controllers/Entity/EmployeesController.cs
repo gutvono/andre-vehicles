@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Employees
-        [HttpGet]
+        [HttpGet("employees/entity/")]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
             return await _context.Employee.ToListAsync();
         }
 
-        // GET: api/Employees/5
-        [HttpGet("{id}")]
+        [HttpGet("employees/entity/{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(string id)
         {
             var employee = await _context.Employee.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return employee;
         }
 
-        // PUT: api/Employees/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("employees/entity/{id}")]
         public async Task<IActionResult> PutEmployee(string id, Employee employee)
         {
             if (id != employee.Document)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Employees
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("employees/entity/")]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             _context.Employee.Add(employee);
@@ -98,8 +92,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetEmployee", new { id = employee.Document }, employee);
         }
 
-        // DELETE: api/Employees/5
-        [HttpDelete("{id}")]
+        [HttpDelete("employees/entity/{id}")]
         public async Task<IActionResult> DeleteEmployee(string id)
         {
             var employee = await _context.Employee.FindAsync(id);

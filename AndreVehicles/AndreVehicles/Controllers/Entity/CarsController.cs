@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Cars
-        [HttpGet]
+        [HttpGet("cars/entity/")]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
             return await _context.Car.ToListAsync();
         }
 
-        // GET: api/Cars/5
-        [HttpGet("{id}")]
+        [HttpGet("cars/entity/{id}")]
         public async Task<ActionResult<Car>> GetCar(string id)
         {
             var car = await _context.Car.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return car;
         }
 
-        // PUT: api/Cars/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("cars/entity/{id}")]
         public async Task<IActionResult> PutCar(string id, Car car)
         {
             if (id != car.Plate)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Cars
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("cars/entity/")]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
             _context.Car.Add(car);
@@ -98,8 +92,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetCar", new { id = car.Plate }, car);
         }
 
-        // DELETE: api/Cars/5
-        [HttpDelete("{id}")]
+        [HttpDelete("cars/entity/{id}")]
         public async Task<IActionResult> DeleteCar(string id)
         {
             var car = await _context.Car.FindAsync(id);

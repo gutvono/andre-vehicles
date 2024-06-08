@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Sales
-        [HttpGet]
+        [HttpGet("sales/entity/")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSale()
         {
             return await _context.Sale.ToListAsync();
         }
 
-        // GET: api/Sales/5
-        [HttpGet("{id}")]
+        [HttpGet("sales/entity/{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
             var sale = await _context.Sale.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return sale;
         }
 
-        // PUT: api/Sales/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("sales/entity/{id}")]
         public async Task<IActionResult> PutSale(int id, Sale sale)
         {
             if (id != sale.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Sales
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("sales/entity/")]
         public async Task<ActionResult<Sale>> PostSale(Sale sale)
         {
             _context.Sale.Add(sale);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
         }
 
-        // DELETE: api/Sales/5
-        [HttpDelete("{id}")]
+        [HttpDelete("sales/entity/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {
             var sale = await _context.Sale.FindAsync(id);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Cards
-        [HttpGet]
+        [HttpGet("cards/entity/")]
         public async Task<ActionResult<IEnumerable<Card>>> GetCard()
         {
             return await _context.Card.ToListAsync();
         }
 
-        // GET: api/Cards/5
-        [HttpGet("{id}")]
+        [HttpGet("cards/entity/{id}")]
         public async Task<ActionResult<Card>> GetCard(string id)
         {
             var card = await _context.Card.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return card;
         }
 
-        // PUT: api/Cards/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("cards/entity/{id}")]
         public async Task<IActionResult> PutCard(string id, Card card)
         {
             if (id != card.CardNumber)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Cards
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("cards/entity/")]
         public async Task<ActionResult<Card>> PostCard(Card card)
         {
             _context.Card.Add(card);
@@ -98,8 +92,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetCard", new { id = card.CardNumber }, card);
         }
 
-        // DELETE: api/Cards/5
-        [HttpDelete("{id}")]
+        [HttpDelete("cards/entity/{id}")]
         public async Task<IActionResult> DeleteCard(string id)
         {
             var card = await _context.Card.FindAsync(id);

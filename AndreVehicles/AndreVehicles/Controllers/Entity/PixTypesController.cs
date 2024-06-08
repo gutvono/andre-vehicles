@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/PixTypes
-        [HttpGet]
+        [HttpGet("pixtypes/entity/")]
         public async Task<ActionResult<IEnumerable<PixType>>> GetPixType()
         {
             return await _context.PixType.ToListAsync();
         }
 
-        // GET: api/PixTypes/5
-        [HttpGet("{id}")]
+        [HttpGet("pixtypes/entity/{id}")]
         public async Task<ActionResult<PixType>> GetPixType(int id)
         {
             var pixType = await _context.PixType.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return pixType;
         }
 
-        // PUT: api/PixTypes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("pixtypes/entity/{id}")]
         public async Task<IActionResult> PutPixType(int id, PixType pixType)
         {
             if (id != pixType.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/PixTypes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("pixtypes/entity/")]
         public async Task<ActionResult<PixType>> PostPixType(PixType pixType)
         {
             _context.PixType.Add(pixType);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetPixType", new { id = pixType.Id }, pixType);
         }
 
-        // DELETE: api/PixTypes/5
-        [HttpDelete("{id}")]
+        [HttpDelete("pixtypes/entity/{id}")]
         public async Task<IActionResult> DeletePixType(int id)
         {
             var pixType = await _context.PixType.FindAsync(id);

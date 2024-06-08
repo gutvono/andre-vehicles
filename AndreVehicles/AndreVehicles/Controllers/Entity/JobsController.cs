@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Jobs
-        [HttpGet]
+        [HttpGet("jobs/entity/")]
         public async Task<ActionResult<IEnumerable<Job>>> GetJob()
         {
             return await _context.Job.ToListAsync();
         }
 
-        // GET: api/Jobs/5
-        [HttpGet("{id}")]
+        [HttpGet("jobs/entity/{id}")]
         public async Task<ActionResult<Job>> GetJob(int id)
         {
             var job = await _context.Job.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return job;
         }
 
-        // PUT: api/Jobs/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("jobs/entity/{id}")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
             if (id != job.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Jobs
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("jobs/entity/")]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
             _context.Job.Add(job);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetJob", new { id = job.Id }, job);
         }
 
-        // DELETE: api/Jobs/5
-        [HttpDelete("{id}")]
+        [HttpDelete("jobs/entity/{id}")]
         public async Task<IActionResult> DeleteJob(int id)
         {
             var job = await _context.Job.FindAsync(id);

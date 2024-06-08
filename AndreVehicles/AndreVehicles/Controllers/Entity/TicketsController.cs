@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Tickets
-        [HttpGet]
+        [HttpGet("tickets/entity/")]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
             return await _context.Ticket.ToListAsync();
         }
 
-        // GET: api/Tickets/5
-        [HttpGet("{id}")]
+        [HttpGet("tickets/entity/{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
             var ticket = await _context.Ticket.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return ticket;
         }
 
-        // PUT: api/Tickets/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("tickets/entity/{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
             if (id != ticket.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Tickets
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("tickets/entity/")]
         public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
         {
             _context.Ticket.Add(ticket);
@@ -84,8 +78,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
         }
 
-        // DELETE: api/Tickets/5
-        [HttpDelete("{id}")]
+        [HttpDelete("tickets/entity/{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
             var ticket = await _context.Ticket.FindAsync(id);

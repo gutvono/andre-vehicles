@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,15 +21,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/Purchases
-        [HttpGet]
+        [HttpGet("purchases/entity/")]
         public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchase()
         {
             return await _context.Purchase.ToListAsync();
         }
 
-        // GET: api/Purchases/5
-        [HttpGet("{id}")]
+        [HttpGet("purchases/entity/{id}")]
         public async Task<ActionResult<Purchase>> GetPurchase(int? id)
         {
             var purchase = await _context.Purchase.FindAsync(id);
@@ -42,9 +40,7 @@ namespace AndreVehicles.Controllers
             return purchase;
         }
 
-        // PUT: api/Purchases/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("purchases/entity/{id}")]
         public async Task<IActionResult> PutPurchase(int? id, Purchase purchase)
         {
             if (id != purchase.Id)
@@ -73,9 +69,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/Purchases
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("purchases/entity/")]
         public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
         {
             _context.Purchase.Add(purchase);
@@ -84,7 +78,6 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
         }
 
-        // DELETE: api/Purchases/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePurchase(int? id)
         {

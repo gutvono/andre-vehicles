@@ -9,7 +9,7 @@ using AndreVehicles.Data;
 using Model;
 using Model.DTO;
 
-namespace AndreVehicles.Controllers
+namespace AndreVehicles.Controllers.Entity
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,15 +22,13 @@ namespace AndreVehicles.Controllers
             _context = context;
         }
 
-        // GET: api/CarJobs
-        [HttpGet]
+        [HttpGet("carjobs/entity/")]
         public async Task<ActionResult<IEnumerable<CarJob>>> GetCarJob()
         {
             return await _context.CarJob.ToListAsync();
         }
 
-        // GET: api/CarJobs/5
-        [HttpGet("{id}")]
+        [HttpGet("carjobs/entity/{id}")]
         public async Task<ActionResult<CarJob>> GetCarJob(int? id)
         {
             var carJob = await _context.CarJob.FindAsync(id);
@@ -43,9 +41,7 @@ namespace AndreVehicles.Controllers
             return carJob;
         }
 
-        // PUT: api/CarJobs/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("carjobs/entity/{id}")]
         public async Task<IActionResult> PutCarJob(int? id, CarJob carJob)
         {
             if (id != carJob.Id)
@@ -74,9 +70,7 @@ namespace AndreVehicles.Controllers
             return NoContent();
         }
 
-        // POST: api/CarJobs
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("carjobs/entity/")]
         public async Task<ActionResult<CarJob>> PostCarJob(CarJobDTO carJobDTO)
         {
             CarJob carJob = new CarJob(carJobDTO);
@@ -89,8 +83,7 @@ namespace AndreVehicles.Controllers
             return CreatedAtAction("GetCarJob", new { id = carJob.Id }, carJob);
         }
 
-        // DELETE: api/CarJobs/5
-        [HttpDelete("{id}")]
+        [HttpDelete("carjobs/entity/{id}")]
         public async Task<IActionResult> DeleteCarJob(int? id)
         {
             var carJob = await _context.CarJob.FindAsync(id);

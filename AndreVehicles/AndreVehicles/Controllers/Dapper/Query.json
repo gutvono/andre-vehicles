@@ -1,0 +1,117 @@
+﻿{
+  "ConnectionString": "Data Source = 127.0.0.1; Initial Catalog=AndreVehiclesDB; User Id=sa; Password=SqlServer2019!; TrustServerCertificate=True",
+  "Query": {
+    "AddressesController": {
+      "GET": "SELECT * FROM Address;",
+      "GETBYID": "SELECT * FROM Address WHERE Id = @Id;",
+      "UPDATE": "UPDATE Address SET Street = @Street, PostalCode = @PostalCode, Neighborhood = @Neighborhood, StreetType = @StreetType, Number = @Number, Complement = @Complement, State = @State, City = @City WHERE Id = @Id;",
+      "INSERT": "INSERT INTO Address (Street, PostalCode, Neighborhood, StreetType, Number, Complement, State, City) VALUES (@Street, @PostalCode, @Neighborhood, @StreetType, @Number, @Complement, @State, @City); SELECT CAST(SCOPE_IDENTITY() as int);",
+      "DELETE": "DELETE FROM Address WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Address WHERE Id = @Id"
+    },
+    "CardsController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "CarJobsController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "CarsController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "CustomersController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "EmployeesController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "JobsController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "PaymentsController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "PixesController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "PixTypesController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "PurchasesController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "RolesController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "SalesController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    },
+    "TicketsController": {
+      "GET": "",
+      "GETBYID": "",
+      "UPDATE": "",
+      "INSERT": "",
+      "DELETE": "",
+      "EXISTS": ""
+    }
+  }
+}
