@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AndreVehicles.Data;
 using Model;
+using Model.DTO;
 
 namespace AndreVehicles.Controllers.Entity
 {
@@ -21,13 +22,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("addresses/entity")]
+        [HttpGet("address/entity")]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddress()
         {
             return await _context.Address.ToListAsync();
         }
 
-        [HttpGet("addresses/entity/{id}")]
+        [HttpGet("address/entity/{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);
@@ -40,7 +41,7 @@ namespace AndreVehicles.Controllers.Entity
             return address;
         }
 
-        [HttpPut("addresses/entity/{id}")]
+        [HttpPut("address/entity/{id}")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
             if (id != address.Id)
@@ -69,16 +70,26 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("addresses/entity/")]
-        public async Task<ActionResult<Address>> PostAddress(Address address)
+        [HttpPost("address/entity/")]
+        public async Task<ActionResult<Address>> PostAddress(AddressDTO addressDto)
         {
-            _context.Address.Add(address);
+            _context.Address.Add(new Address
+            {
+                Street = addressDto.Street, 
+                PostalCode = addressDto.PostalCode,
+                Neighborhood = addressDto.Neighborhood,
+                StreetType = addressDto.StreetType,
+                Number = addressDto.Number,
+                Complement = addressDto.Complement,
+                State = addressDto.State,
+                City = addressDto.City
+            });
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAddress", new { id = address.Id }, address);
+            return CreatedAtAction("GetAddress", addressDto);
         }
 
-        [HttpDelete("addresses/entity/{id}")]
+        [HttpDelete("address/entity/{id}")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);

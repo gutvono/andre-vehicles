@@ -15,13 +15,12 @@ using Newtonsoft.Json;
 namespace AndreVehicles.Controllers.Dapper
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class AddressesController : ControllerBase
+    public class CardsController : ControllerBase
     {
         private readonly string _connectionString;
         private readonly Config DapperFile;
 
-        public AddressesController()
+        public CardsController()
         {
             using (var reader = new StreamReader(@".\Controllers\Dapper\Query.json"))
             {
@@ -31,43 +30,43 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("address/dapper")]
-        public async Task<ActionResult<IEnumerable<Address>>> GetAddress()
+        [HttpGet("card/dapper")]
+        public async Task<ActionResult<IEnumerable<Card>>> GetCard()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var addresses = await connection.QueryAsync<Address>(DapperFile.Query.Address.GET);
-                return Ok(addresses);
+                var cards = await connection.QueryAsync<Card>(DapperFile.Query.Card.GET);
+                return Ok(cards);
             }
         }
 
-        [HttpGet("address/dapper/{id}")]
-        public async Task<ActionResult<Address>> GetAddress(int id)
+        [HttpGet("card/dapper/{CardNumber}")]
+        public async Task<ActionResult<Card>> GetCard(string CardNumber)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var address = await connection.QueryFirstOrDefaultAsync<Address>(DapperFile.Query.Address.GETBYID, new { Id = id });
+                var card = await connection.QueryFirstOrDefaultAsync<Card>(DapperFile.Query.Card.GETBYID, new { CardNumber = CardNumber });
 
-                if (address == null)
+                if (card == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(address);
+                return Ok(card);
             }
         }
 
-        [HttpPut("address/dapper/{id}")]
-        public async Task<IActionResult> PutAddress(int id, Address address)
+        [HttpPut("card/dapper/{CardNumber}")]
+        public async Task<IActionResult> PutCard(string cardNumber, Card card)
         {
-            if (id != address.Id)
+            if (cardNumber != card.CardNumber)
             {
                 return BadRequest();
             }
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Address.UPDATE, address);
+                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Card.UPDATE, card);
 
                 if (affectedRows == 0)
                 {
@@ -78,25 +77,25 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("address/dapper/")]
-        public async Task<ActionResult<Address>> PostAddress(Address address)
+        [HttpPost("card/dapper/")]
+        public async Task<ActionResult<Card>> PostCard(Card card)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var id = await connection.QuerySingleAsync<int>(DapperFile.Query.Address.INSERT, address);
+                var CardNumber = await connection.QuerySingleAsync<string>(DapperFile.Query.Card.INSERT, card);
 
-                address.Id = id;
+                card.CardNumber = CardNumber;
 
-                return CreatedAtAction("GetAddress", new { id = address.Id }, address);
+                return CreatedAtAction("GetAddress", new { CardNumber = card.CardNumber }, card);
             }
         }
 
-        [HttpDelete("address/dapper/{id}")]
-        public async Task<IActionResult> DeleteAddress(int id)
+        [HttpDelete("card/dapper/{CardNumber}")]
+        public async Task<IActionResult> DeleteCard(int cardNumber)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Address.DELETE, new { Id = id });
+                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Card.DELETE, new { CardNumber = cardNumber });
 
                 if (affectedRows == 0)
                 {
@@ -107,11 +106,11 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        private async Task<bool> AddressExists(int id)
+        private async Task<bool> CardExists(string cardNumber)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<bool>(DapperFile.Query.Address.EXISTS, new { Id = id });
+                return await connection.ExecuteScalarAsync<bool>(DapperFile.Query.Card.EXISTS, new { CardNumber = cardNumber });
             }
         }
     }

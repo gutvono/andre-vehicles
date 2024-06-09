@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("sales/entity/")]
+        [HttpGet("sale/entity/")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSale()
         {
             return await _context.Sale.ToListAsync();
         }
 
-        [HttpGet("sales/entity/{id}")]
+        [HttpGet("sale/entity/{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
             var sale = await _context.Sale.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return sale;
         }
 
-        [HttpPut("sales/entity/{id}")]
+        [HttpPut("sale/entity/{id}")]
         public async Task<IActionResult> PutSale(int id, Sale sale)
         {
             if (id != sale.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("sales/entity/")]
+        [HttpPost("sale/entity/")]
         public async Task<ActionResult<Sale>> PostSale(Sale sale)
         {
             _context.Sale.Add(sale);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
         }
 
-        [HttpDelete("sales/entity/{id}")]
+        [HttpDelete("sale/entity/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {
             var sale = await _context.Sale.FindAsync(id);

@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("pixtypes/entity/")]
+        [HttpGet("pixtype/entity/")]
         public async Task<ActionResult<IEnumerable<PixType>>> GetPixType()
         {
             return await _context.PixType.ToListAsync();
         }
 
-        [HttpGet("pixtypes/entity/{id}")]
+        [HttpGet("pixtype/entity/{id}")]
         public async Task<ActionResult<PixType>> GetPixType(int id)
         {
             var pixType = await _context.PixType.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return pixType;
         }
 
-        [HttpPut("pixtypes/entity/{id}")]
+        [HttpPut("pixtype/entity/{id}")]
         public async Task<IActionResult> PutPixType(int id, PixType pixType)
         {
             if (id != pixType.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("pixtypes/entity/")]
+        [HttpPost("pixtype/entity/")]
         public async Task<ActionResult<PixType>> PostPixType(PixType pixType)
         {
             _context.PixType.Add(pixType);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetPixType", new { id = pixType.Id }, pixType);
         }
 
-        [HttpDelete("pixtypes/entity/{id}")]
+        [HttpDelete("pixtype/entity/{id}")]
         public async Task<IActionResult> DeletePixType(int id)
         {
             var pixType = await _context.PixType.FindAsync(id);

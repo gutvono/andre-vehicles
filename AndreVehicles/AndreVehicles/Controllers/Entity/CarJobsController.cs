@@ -22,16 +22,16 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("carjobs/entity/")]
+        [HttpGet("carjob/entity/")]
         public async Task<ActionResult<IEnumerable<CarJob>>> GetCarJob()
         {
-            return await _context.CarJob.ToListAsync();
+            return await _context.CarJob.Include(cj => cj.Car).Include(cj => cj.Job).ToListAsync();
         }
 
-        [HttpGet("carjobs/entity/{id}")]
+        [HttpGet("carjob/entity/{id}")]
         public async Task<ActionResult<CarJob>> GetCarJob(int? id)
         {
-            var carJob = await _context.CarJob.FindAsync(id);
+            var carJob = await _context.CarJob.Include(cj => cj.Car).Include(cj => cj.Job).FirstOrDefaultAsync(cj => cj.Id == id);
 
             if (carJob == null)
             {
@@ -41,7 +41,7 @@ namespace AndreVehicles.Controllers.Entity
             return carJob;
         }
 
-        [HttpPut("carjobs/entity/{id}")]
+        [HttpPut("carjob/entity/{id}")]
         public async Task<IActionResult> PutCarJob(int? id, CarJob carJob)
         {
             if (id != carJob.Id)
@@ -70,12 +70,14 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("carjobs/entity/")]
+        [HttpPost("carjob/entity/")]
         public async Task<ActionResult<CarJob>> PostCarJob(CarJobDTO carJobDTO)
         {
             CarJob carJob = new CarJob(carJobDTO);
             carJob.Car = await _context.Car.FindAsync(carJob.Car.Plate);
             carJob.Job = await _context.Job.FindAsync(carJob.Job.Id);
+
+            if (carJob.Car == null || carJob.Job == null) BadRequest("Placa do carro ou ID do serviço inválidos.");
 
             _context.CarJob.Add(carJob);
             await _context.SaveChangesAsync();
@@ -83,7 +85,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetCarJob", new { id = carJob.Id }, carJob);
         }
 
-        [HttpDelete("carjobs/entity/{id}")]
+        [HttpDelete("carjob/entity/{id}")]
         public async Task<IActionResult> DeleteCarJob(int? id)
         {
             var carJob = await _context.CarJob.FindAsync(id);

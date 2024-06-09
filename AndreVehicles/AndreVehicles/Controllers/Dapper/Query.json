@@ -1,7 +1,7 @@
 ﻿{
   "ConnectionString": "Data Source = 127.0.0.1; Initial Catalog=AndreVehiclesDB; User Id=sa; Password=SqlServer2019!; TrustServerCertificate=True",
   "Query": {
-    "AddressesController": {
+    "Address": {
       "GET": "SELECT * FROM Address;",
       "GETBYID": "SELECT * FROM Address WHERE Id = @Id;",
       "UPDATE": "UPDATE Address SET Street = @Street, PostalCode = @PostalCode, Neighborhood = @Neighborhood, StreetType = @StreetType, Number = @Number, Complement = @Complement, State = @State, City = @City WHERE Id = @Id;",
@@ -9,109 +9,109 @@
       "DELETE": "DELETE FROM Address WHERE Id = @Id;",
       "EXISTS": "SELECT COUNT(1) FROM Address WHERE Id = @Id"
     },
-    "CardsController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Card": {
+      "GET": "SELECT * FROM Card;",
+      "GETBYID": "SELECT * FROM Card WHERE CardNumber = @CardNumber;",
+      "UPDATE": "UPDATE Card SET CardNumber = @CardNumber, SecurityCode = @SecurityCode, ExpirationDate = @ExpirationDate, CardName = @CardName WHERE CardNumber = @CardNumber;",
+      "INSERT": "INSERT INTO Card (CardNumber, SecurityCode, ExpirationDate, CardName) VALUES (@CardNumber, @SecurityCode, @ExpirationDate, @CardName);",
+      "DELETE": "DELETE FROM Card WHERE CardNumber = @CardNumber;",
+      "EXISTS": "SELECT COUNT(1) FROM Card WHERE CardNumber = @CardNumber;"
     },
-    "CarJobsController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "CarJob": {
+      "GET": "SELECT cj.*, c.*, j.* FROM CarJob cj INNER JOIN Car c ON cj.CarPlate = c.Plate INNER JOIN Job j ON cj.JobId = j.Id;",
+      "GETBYID": "SELECT cj.*, c.*, j.* FROM CarJob cj INNER JOIN Car c ON cj.CarPlate = c.Plate INNER JOIN Job j ON cj.JobId = j.Id WHERE cj.Id = @Id;",
+      "UPDATE": "UPDATE CarJob SET Id = @Id, Car = @Car, Job = @Job, Status = @Status;",
+      "INSERT": "INSERT INTO CarJob (Id, Car, Job, Status) VALUES (@Id, @Car, @Job, @Status);",
+      "DELETE": "DELETE FROM CarJob WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM CarJob WHERE Id = @Id;"
     },
-    "CarsController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Car": {
+      "GET": "SELECT * FROM Car;",
+      "GETBYID": "SELECT * FROM Car WHERE Plate = @Plate",
+      "UPDATE": "UPDATE Car SET Plate = @Plate, Name = @Name, ModelYear = @ModelYear, FabricationYear = @FabricationYear, Color = @Color, Sold = @Sold;",
+      "INSERT": "INSERT INTO Car (Plate, Name, ModelYear, FabricationYear, Color, Sold) VALUES (@Plate, @Name, @ModelYear, @FabricationYear, @Color, @Sold);",
+      "DELETE": "DELETE FROM Car WHERE Plate = @Plate;",
+      "EXISTS": "SELECT COUNT(1) FROM Car WHERE Plate = @Plate;"
     },
-    "CustomersController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Customer": {
+      "GET": "SELECT * FROM Customer;",
+      "GETBYID": "SELECT * FROM Customer WHERE Document = @Document;",
+      "UPDATE": "UPDATE Customers SET Document = @Document, PdfDocument = @PdfDocument, Income = @Income, Name = @Name, BirthDate = @BirthDate, AddressId = @Address, Email = @Email;",
+      "INSERT": "INSERT INTO Customer (Document, PdfDocument, Income, Name, BirthDate, AddressId, Email) VALUES (@Document, @PdfDocument, @Income, @Name, @BirthDate, @Address, @Email);",
+      "DELETE": "DELETE FROM Customer WHERE Document = @Document;",
+      "EXISTS": "SELECT COUNT(1) FROM Customer WHERE Document = @Document;"
     },
-    "EmployeesController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Employee": {
+      "GET": "SELECT * FROM Employee;",
+      "GETBYID": "SELECT * FROM Employee WHERE Document = @Document;",
+      "UPDATE": "UPDATE Employee SET Document = @Document, ComissionValue = @ComissionValue, Comission = @Comission, Name = @Name, BirthDate = @BirthDate, AddressId = @Address, Email = @Email;",
+      "INSERT": "INSERT INTO Employee (Document, ComissionValue, Comission, Name, BirthDate, AddressId, Email) VALUES (@Document, @ComissionValue, @Comission, @Name, @BirthDate, @Address, @Email);",
+      "DELETE": "DELETE FROM Employee WHERE Document = @Document;",
+      "EXISTS": "SELECT COUNT(1) FROM Employee WHERE Document = @Document;"
     },
-    "JobsController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Job": {
+      "GET": "SELECT * FROM Job;",
+      "GETBYID": "SELECT * FROM Job WHERE Id = @Id;",
+      "UPDATE": "UPDATE Job SET Description = @Description;",
+      "INSERT": "INSERT INTO Job (Description) VALUES (@Description);",
+      "DELETE": "DELETE FROM Job WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Job WHERE Id = @Id"
     },
-    "PaymentsController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Payment": {
+      "GET": "SELECT * FROM Payment;",
+      "GETBYID": "SELECT * FROM Paymenr WHERE Id = @Id;",
+      "UPDATE": "UPDATE Payment SET CardNumber = @CardNumber, TicketId = @Ticket, PixId = @Pix, PaymentDate = @PaymentDate;",
+      "INSERT": "INSERT INTO Payment (CardNumber, TicketId, PixId, PaymentDate) VALUES (@CardNumber, @Ticket, @Pix, @PaymentDate);",
+      "DELETE": "DELETE FROM Payment WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Payment WHERE Id = @Id;"
     },
-    "PixesController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Pixe": {
+      "GET": "SELECT * FROM Pix;",
+      "GETBYID": "SELECT * FROM Pix WHERE Id = @Id;",
+      "UPDATE": "UPDATE Pix SET PixTypeId = @PixType, PixKey = @PixKey;",
+      "INSERT": "INSERT INTO Pix (PixTypeId, PixKey) VALUES (@PixType, @PixKey);",
+      "DELETE": "DELETE FROM Pix WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Pix WHERE Id = @Id;"
     },
-    "PixTypesController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "PixType": {
+      "GET": "SELECT * FROM PixType;",
+      "GETBYID": "SELECT * FROM PixType WHERE Id = @Id;",
+      "UPDATE": "UPDATE PixType SET Name = @Name;",
+      "INSERT": "INSERT INTO PixType (Name) VALUES (@Name);",
+      "DELETE": "DELETE FROM PixType WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM PixType WHERE Id = @Id;"
     },
-    "PurchasesController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Purchase": {
+      "GET": "SELECT * FROM Purchase;",
+      "GETBYID": "SELECT * FROM Purchase WHERE Id = @Id;",
+      "UPDATE": "UPDATE Purchase SET CarPlate = @Car, Price = @Price, PurchaseDate = @PurchaseDate;",
+      "INSERT": "INSERT INTO Purchase (CarPlate, Price, PurchaseDate) VALUES (@Car, @Price, @PurchaseDate);",
+      "DELETE": "DELETE FROM Purchase WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Purchase WHERE Id = @Id;"
     },
-    "RolesController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Role": {
+      "GET": "SELECT * FROM Role;",
+      "GETBYID": "SELECT * FROM Role WHERE Id = @Id;",
+      "UPDATE": "UPDATE Role SET Description = @Description;",
+      "INSERT": "INSERT INTO Role (Description) VALUES (@Description);",
+      "DELETE": "DELETE FROM Role WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Role WHERE Id = @Id;"
     },
-    "SalesController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Sale": {
+      "GET": "SELECT * FROM Sale;",
+      "GETBYID": "SELECT * FROM Sale WHERE Id = @Id;",
+      "UPDATE": "UPDATE Sale SET CarPlate = @Car, SaleDate = @SaleDate, SaleValue = @SaleValue, CustomerDocument = @Customer, EmployeeDocument = @Employee, PaymentId = @Payment;",
+      "INSERT": "INSERT INTO Sale (CarPlate, SaleDate, SaleValue, CustomerDocument, EmployeeDocument, PaymentId) VALUES (@Car, @SaleDate, @SaleValue, @Customer, @Employee, @Payment);",
+      "DELETE": "DELETE FROM Sale WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Sale WHERE Id = @Id;"
     },
-    "TicketsController": {
-      "GET": "",
-      "GETBYID": "",
-      "UPDATE": "",
-      "INSERT": "",
-      "DELETE": "",
-      "EXISTS": ""
+    "Ticket": {
+      "GET": "SELECT * FROM Ticket;",
+      "GETBYID": "SELECT * FROM Ticker WHERE Id = @Id;",
+      "UPDATE": "UPDATE Ticket SET Number = @Number, ExpirationDate = @ExpirationDate;",
+      "INSERT": "INSERT INTO Ticket (Number, ExpirationDate) VALUES (@Number, @ExpirationDate);",
+      "DELETE": "DELETE FROM Ticket WHERE Id = @Id;",
+      "EXISTS": "SELECT COUNT(1) FROM Ticket WHERE Id = @Id"
     }
   }
 }

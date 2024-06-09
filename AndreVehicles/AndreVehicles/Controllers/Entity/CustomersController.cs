@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("customers/entity/")]
+        [HttpGet("customer/entity/")]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
             return await _context.Customer.ToListAsync();
         }
 
-        [HttpGet("customers/entity/{id}")]
+        [HttpGet("customer/entity/{id}")]
         public async Task<ActionResult<Customer>> GetCustomer(string id)
         {
             var customer = await _context.Customer.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return customer;
         }
 
-        [HttpPut("customers/entity/{id}")]
+        [HttpPut("customer/entity/{id}")]
         public async Task<IActionResult> PutCustomer(string id, Customer customer)
         {
             if (id != customer.Document)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("customers/entity/")]
+        [HttpPost("customer/entity/")]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
             _context.Customer.Add(customer);
@@ -92,7 +92,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetCustomer", new { id = customer.Document }, customer);
         }
 
-        [HttpDelete("customers/entity/{id}")]
+        [HttpDelete("customer/entity/{id}")]
         public async Task<IActionResult> DeleteCustomer(string id)
         {
             var customer = await _context.Customer.FindAsync(id);

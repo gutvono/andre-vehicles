@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("jobs/entity/")]
+        [HttpGet("job/entity/")]
         public async Task<ActionResult<IEnumerable<Job>>> GetJob()
         {
             return await _context.Job.ToListAsync();
         }
 
-        [HttpGet("jobs/entity/{id}")]
+        [HttpGet("job/entity/{id}")]
         public async Task<ActionResult<Job>> GetJob(int id)
         {
             var job = await _context.Job.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return job;
         }
 
-        [HttpPut("jobs/entity/{id}")]
+        [HttpPut("job/entity/{id}")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
             if (id != job.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("jobs/entity/")]
+        [HttpPost("job/entity/")]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
             _context.Job.Add(job);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetJob", new { id = job.Id }, job);
         }
 
-        [HttpDelete("jobs/entity/{id}")]
+        [HttpDelete("job/entity/{id}")]
         public async Task<IActionResult> DeleteJob(int id)
         {
             var job = await _context.Job.FindAsync(id);

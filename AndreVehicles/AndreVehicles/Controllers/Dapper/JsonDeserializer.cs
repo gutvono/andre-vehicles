@@ -10,20 +10,20 @@ namespace AndreVehicles.Controllers.Dapper
 
     public class Query
     {
-        public ControllerQueries AddressesController { get; set; }
-        public ControllerQueries CardsController { get; set; }
-        public ControllerQueries CarJobsController { get; set; }
-        public ControllerQueries CarsController { get; set; }
-        public ControllerQueries CustomersController { get; set; }
-        public ControllerQueries EmployeesController { get; set; }
-        public ControllerQueries JobsController { get; set; }
-        public ControllerQueries PaymentsController { get; set; }
-        public ControllerQueries PixesController { get; set; }
-        public ControllerQueries PixTypesController { get; set; }
-        public ControllerQueries PurchasesController { get; set; }
-        public ControllerQueries RolesController { get; set; }
-        public ControllerQueries SalesController { get; set; }
-        public ControllerQueries TicketsController { get; set; }
+        public ControllerQueries Address { get; set; }
+        public ControllerQueries Card { get; set; }
+        public ControllerQueries CarJob { get; set; }
+        public ControllerQueries Car { get; set; }
+        public ControllerQueries Customer { get; set; }
+        public ControllerQueries Employee { get; set; }
+        public ControllerQueries Job { get; set; }
+        public ControllerQueries Payment { get; set; }
+        public ControllerQueries Pix { get; set; }
+        public ControllerQueries PixType { get; set; }
+        public ControllerQueries Purchase { get; set; }
+        public ControllerQueries Role { get; set; }
+        public ControllerQueries Sale { get; set; }
+        public ControllerQueries Ticket { get; set; }
     }
 
     public class ControllerQueries
