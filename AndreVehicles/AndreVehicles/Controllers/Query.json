@@ -65,11 +65,11 @@
       "DELETE": "DELETE FROM Payment WHERE Id = @Id;",
       "EXISTS": "SELECT COUNT(1) FROM Payment WHERE Id = @Id;"
     },
-    "Pixe": {
+    "Pix": {
       "GET": "SELECT * FROM Pix;",
       "GETBYID": "SELECT * FROM Pix WHERE Id = @Id;",
       "UPDATE": "UPDATE Pix SET PixTypeId = @PixType, PixKey = @PixKey;",
-      "INSERT": "INSERT INTO Pix (PixTypeId, PixKey) VALUES (@PixType, @PixKey);",
+      "INSERT": "INSERT INTO Pix (PixType, PixKey) VALUES (@PixType, @PixKey);",
       "DELETE": "DELETE FROM Pix WHERE Id = @Id;",
       "EXISTS": "SELECT COUNT(1) FROM Pix WHERE Id = @Id;"
     },

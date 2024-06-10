@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AndreVehicles.Controllers.Dapper
+namespace AndreVehicles.Controllers
 {
     public class Config
     {

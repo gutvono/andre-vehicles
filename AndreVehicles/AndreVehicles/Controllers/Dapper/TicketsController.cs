@@ -11,15 +11,15 @@ namespace AndreVehicles.Controllers.Dapper
     public class TicketsController : ControllerBase
     {
         private readonly string _connectionString;
-        private readonly Config DapperFile;
+        private readonly Config QueryFile;
 
         TicketsController()
         {
-            using (var reader = new StreamReader(@".\Controllers\Dapper\Query.json"))
+            using (var reader = new StreamReader(@".\Controllers\Query.json"))
             {
                 string json = reader.ReadToEnd();
-                DapperFile = JsonConvert.DeserializeObject<Config>(json);
-                _connectionString = DapperFile.ConnectionString;
+                QueryFile = JsonConvert.DeserializeObject<Config>(json);
+                _connectionString = QueryFile.ConnectionString;
             }
         }
 
@@ -28,7 +28,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var tickets = await connection.QueryAsync<Ticket>(DapperFile.Query.Ticket.GET);
+                var tickets = await connection.QueryAsync<Ticket>(QueryFile.Query.Ticket.GET);
                 return Ok(tickets);
             }
         }
@@ -38,7 +38,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var ticket = await connection.QueryFirstOrDefaultAsync<Ticket>(DapperFile.Query.Ticket.GETBYID, new { Id = id });
+                var ticket = await connection.QueryFirstOrDefaultAsync<Ticket>(QueryFile.Query.Ticket.GETBYID, new { Id = id });
 
                 if (ticket == null)
                 {
@@ -59,7 +59,7 @@ namespace AndreVehicles.Controllers.Dapper
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Ticket.UPDATE, ticket);
+                var affectedRows = await connection.ExecuteAsync(QueryFile.Query.Ticket.UPDATE, ticket);
 
                 if (affectedRows == 0)
                 {
@@ -75,7 +75,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var id = await connection.QuerySingleAsync<int>(DapperFile.Query.Ticket.INSERT, ticket);
+                var id = await connection.QuerySingleAsync<int>(QueryFile.Query.Ticket.INSERT, ticket);
 
                 ticket.Id = id;
 
@@ -88,7 +88,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Ticket.DELETE, new { Id = id });
+                var affectedRows = await connection.ExecuteAsync(QueryFile.Query.Ticket.DELETE, new { Id = id });
 
                 if (affectedRows == 0)
                 {
@@ -103,7 +103,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<bool>(DapperFile.Query.Ticket.EXISTS, new { Id = id });
+                return await connection.ExecuteScalarAsync<bool>(QueryFile.Query.Ticket.EXISTS, new { Id = id });
             }
         }
     }

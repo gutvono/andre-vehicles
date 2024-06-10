@@ -11,15 +11,15 @@ namespace AndreVehicles.Controllers.Dapper
     public class PixTypesController : ControllerBase
     {
         private readonly string _connectionString;
-        private readonly Config DapperFile;
+        private readonly Config QueryFile;
 
         PixTypesController()
         {
-            using (var reader = new StreamReader(@".\Controllers\Dapper\Query.json"))
+            using (var reader = new StreamReader(@".\Controllers\Query.json"))
             {
                 string json = reader.ReadToEnd();
-                DapperFile = JsonConvert.DeserializeObject<Config>(json);
-                _connectionString = DapperFile.ConnectionString;
+                QueryFile = JsonConvert.DeserializeObject<Config>(json);
+                _connectionString = QueryFile.ConnectionString;
             }
         }
 
@@ -28,7 +28,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var pixtypes = await connection.QueryAsync<PixType>(DapperFile.Query.PixType.GET);
+                var pixtypes = await connection.QueryAsync<PixType>(QueryFile.Query.PixType.GET);
                 return Ok(pixtypes);
             }
         }
@@ -38,7 +38,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var pixtype = await connection.QueryFirstOrDefaultAsync<PixType>(DapperFile.Query.PixType.GETBYID, new { Id = id });
+                var pixtype = await connection.QueryFirstOrDefaultAsync<PixType>(QueryFile.Query.PixType.GETBYID, new { Id = id });
 
                 if (pixtype == null)
                 {
@@ -59,7 +59,7 @@ namespace AndreVehicles.Controllers.Dapper
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.PixType.UPDATE, pixtype);
+                var affectedRows = await connection.ExecuteAsync(QueryFile.Query.PixType.UPDATE, pixtype);
 
                 if (affectedRows == 0)
                 {
@@ -75,7 +75,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var id = await connection.QuerySingleAsync<int>(DapperFile.Query.PixType.INSERT, pixtype);
+                var id = await connection.QuerySingleAsync<int>(QueryFile.Query.PixType.INSERT, pixtype);
 
                 pixtype.Id = id;
 
@@ -88,7 +88,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.PixType.DELETE, new { Id = id });
+                var affectedRows = await connection.ExecuteAsync(QueryFile.Query.PixType.DELETE, new { Id = id });
 
                 if (affectedRows == 0)
                 {
@@ -103,7 +103,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<bool>(DapperFile.Query.PixType.EXISTS, new { Id = id });
+                return await connection.ExecuteScalarAsync<bool>(QueryFile.Query.PixType.EXISTS, new { Id = id });
             }
         }
     }

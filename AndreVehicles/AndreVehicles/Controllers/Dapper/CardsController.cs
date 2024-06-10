@@ -18,15 +18,15 @@ namespace AndreVehicles.Controllers.Dapper
     public class CardsController : ControllerBase
     {
         private readonly string _connectionString;
-        private readonly Config DapperFile;
+        private readonly Config QueryFile;
 
         public CardsController()
         {
-            using (var reader = new StreamReader(@".\Controllers\Dapper\Query.json"))
+            using (var reader = new StreamReader(@".\Controllers\Query.json"))
             {
                 string json = reader.ReadToEnd();
-                DapperFile = JsonConvert.DeserializeObject<Config>(json);
-                _connectionString = DapperFile.ConnectionString;
+                QueryFile = JsonConvert.DeserializeObject<Config>(json);
+                _connectionString = QueryFile.ConnectionString;
             }
         }
 
@@ -35,7 +35,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var cards = await connection.QueryAsync<Card>(DapperFile.Query.Card.GET);
+                var cards = await connection.QueryAsync<Card>(QueryFile.Query.Card.GET);
                 return Ok(cards);
             }
         }
@@ -45,7 +45,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var card = await connection.QueryFirstOrDefaultAsync<Card>(DapperFile.Query.Card.GETBYID, new { CardNumber = CardNumber });
+                var card = await connection.QueryFirstOrDefaultAsync<Card>(QueryFile.Query.Card.GETBYID, new { CardNumber = CardNumber });
 
                 if (card == null)
                 {
@@ -66,7 +66,7 @@ namespace AndreVehicles.Controllers.Dapper
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Card.UPDATE, card);
+                var affectedRows = await connection.ExecuteAsync(QueryFile.Query.Card.UPDATE, card);
 
                 if (affectedRows == 0)
                 {
@@ -82,7 +82,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var CardNumber = await connection.QuerySingleAsync<string>(DapperFile.Query.Card.INSERT, card);
+                var CardNumber = await connection.QuerySingleAsync<string>(QueryFile.Query.Card.INSERT, card);
 
                 card.CardNumber = CardNumber;
 
@@ -95,7 +95,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var affectedRows = await connection.ExecuteAsync(DapperFile.Query.Card.DELETE, new { CardNumber = cardNumber });
+                var affectedRows = await connection.ExecuteAsync(QueryFile.Query.Card.DELETE, new { CardNumber = cardNumber });
 
                 if (affectedRows == 0)
                 {
@@ -110,7 +110,7 @@ namespace AndreVehicles.Controllers.Dapper
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                return await connection.ExecuteScalarAsync<bool>(DapperFile.Query.Card.EXISTS, new { CardNumber = cardNumber });
+                return await connection.ExecuteScalarAsync<bool>(QueryFile.Query.Card.EXISTS, new { CardNumber = cardNumber });
             }
         }
     }
