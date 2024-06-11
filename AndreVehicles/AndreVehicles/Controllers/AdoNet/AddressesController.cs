@@ -22,7 +22,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("address/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddresses()
         {
             var addresses = new List<Address>();
@@ -52,7 +52,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(addresses);
         }
 
-        [HttpGet("address/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
             Address address = null;
@@ -89,7 +89,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(address);
         }
 
-        [HttpPut("address/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
             if (id != address.Id)
@@ -122,7 +122,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("address/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Address>> PostAddress(Address address)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -144,7 +144,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("address/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

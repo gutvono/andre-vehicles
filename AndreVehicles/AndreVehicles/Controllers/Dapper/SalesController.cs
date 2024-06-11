@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("sale/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSale()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("sale/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("sale/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutSale(int id, Sale sale)
         {
             if (id.Equals(sale.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("sale/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Sale>> PostSale(Sale sale)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("sale/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

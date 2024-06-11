@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("pix/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Pix>>> GetPix()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("pix/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Pix>> GetPix(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("pix/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutPix(int id, Pix pix)
         {
             if (id.Equals(pix.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("pix/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Pix>> PostPix(Pix pix)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("pix/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeletePix(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

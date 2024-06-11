@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("ticket/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("ticket/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("ticket/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
             if (id.Equals(ticket.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("ticket/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("ticket/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

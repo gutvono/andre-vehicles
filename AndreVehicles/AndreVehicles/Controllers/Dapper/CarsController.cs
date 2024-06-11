@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("car/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("car/dapper/{plate}")]
+        [HttpGet("dapper/{plate}")]
         public async Task<ActionResult<Car>> GetCar(string plate)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("car/dapper/{plate}")]
+        [HttpPut("dapper/{plate}")]
         public async Task<IActionResult> PutCar(string plate, Car car)
         {
             if (plate.Equals(car.Plate))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("car/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("car/dapper/{plate}")]
+        [HttpDelete("dapper/{plate}")]
         public async Task<IActionResult> DeleteCar(string plate)
         {
             using (var connection = new SqlConnection(_connectionString))

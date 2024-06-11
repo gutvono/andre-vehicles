@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("pix/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Pix>>> GetPix()
         {
             var pixes = new List<Pix>();
@@ -45,7 +45,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(pixes);
         }
 
-        [HttpGet("pix/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Pix>> GetPix(int id)
         {
             Pix pix = null;
@@ -76,7 +76,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(pix);
         }
 
-        [HttpPut("pix/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutPix(int id, Pix pix)
         {
             if (id != pix.Id)
@@ -103,7 +103,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("pix/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Pix>> PostPix(Pix pix)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -119,7 +119,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("pix/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeletePix(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

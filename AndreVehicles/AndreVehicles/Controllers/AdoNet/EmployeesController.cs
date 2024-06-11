@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("employee/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
             var employees = new List<Employee>();
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(employees);
         }
 
-        [HttpGet("employee/adonet/{document}")]
+        [HttpGet("adonet/{document}")]
         public async Task<ActionResult<Employee>> GetEmployee(string document)
         {
             Employee employee = null;
@@ -84,7 +84,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(employee);
         }
 
-        [HttpPut("employee/adonet/{document}")]
+        [HttpPut("adonet/{document}")]
         public async Task<IActionResult> PutEmployee(string document, Employee employee)
         {
             if (document != employee.Document)
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("employee/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -136,7 +136,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("employee/adonet/{document}")]
+        [HttpDelete("adonet/{document}")]
         public async Task<IActionResult> DeleteEmployee(string document)
         {
             using (var connection = new SqlConnection(_connectionString))

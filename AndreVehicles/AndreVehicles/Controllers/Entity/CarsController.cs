@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("car/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
             return await _context.Car.ToListAsync();
         }
 
-        [HttpGet("car/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Car>> GetCar(string id)
         {
             var car = await _context.Car.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return car;
         }
 
-        [HttpPut("car/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutCar(string id, Car car)
         {
             if (id != car.Plate)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("car/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
             _context.Car.Add(car);
@@ -92,7 +92,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetCar", new { id = car.Plate }, car);
         }
 
-        [HttpDelete("car/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteCar(string id)
         {
             var car = await _context.Car.FindAsync(id);

@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("purchase/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchase()
         {
             var purchases = new List<Purchase>();
@@ -46,7 +46,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(purchases);
         }
 
-        [HttpGet("purchase/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Purchase>> GetPurchase(int id)
         {
             Purchase purchase = null;
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(purchase);
         }
 
-        [HttpPut("purchase/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutPurchase(int id, Purchase purchase)
         {
             if (id != purchase.Id)
@@ -106,7 +106,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("purchase/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -123,7 +123,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("purchase/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeletePurchase(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

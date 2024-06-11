@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("employee/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("employee/dapper/{document}")]
+        [HttpGet("dapper/{document}")]
         public async Task<ActionResult<Employee>> GetEmployee(string document)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("employee/dapper/{document}")]
+        [HttpPut("dapper/{document}")]
         public async Task<IActionResult> PutEmployee(string document, Employee employee)
         {
             if (document.Equals(employee.Document))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("employee/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("employee/dapper/{document}")]
+        [HttpDelete("dapper/{document}")]
         public async Task<IActionResult> DeleteEmployee(string document)
         {
             using (var connection = new SqlConnection(_connectionString))

@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("role/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Role>>> GetRole()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("role/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Role>> GetRole(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("role/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutRole(int id, Role role)
         {
             if (id.Equals(role.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("role/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Role>> PostRole(Role role)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("role/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeleteRole(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

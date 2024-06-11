@@ -24,7 +24,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("carjob/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<CarJobDTO>>> GetCarJob()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -43,7 +43,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("carjob/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<CarJob>> GetCarJob(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("carjob/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutCarJob(int id, CarJob carJob)
         {
             if (id != carJob.Id)
@@ -90,7 +90,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("carjob/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<CarJob>> PostCarJob(CarJobDTO carJobDTO)
         {
             CarJob carJob = new CarJob(carJobDTO);
@@ -111,7 +111,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("carjob/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeleteCarJob(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("ticket/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
             var tickets = new List<Ticket>();
@@ -45,7 +45,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(tickets);
         }
 
-        [HttpGet("ticket/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
             Ticket ticket = null;
@@ -76,7 +76,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(ticket);
         }
 
-        [HttpPut("ticket/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
             if (id != ticket.Id)
@@ -103,7 +103,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("ticket/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -119,7 +119,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("ticket/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

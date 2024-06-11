@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("payment/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayment()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("payment/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Payment>> GetPayment(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("payment/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutPayment(int id, Payment payment)
         {
             if (id.Equals(payment.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("payment/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("payment/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

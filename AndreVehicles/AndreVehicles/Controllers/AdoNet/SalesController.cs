@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("sale/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSale()
         {
             var sales = new List<Sale>();
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(sales);
         }
 
-        [HttpGet("sale/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
             Sale sale = null;
@@ -84,7 +84,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(sale);
         }
 
-        [HttpPut("sale/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutSale(int id, Sale sale)
         {
             if (id != sale.Id)
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("sale/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Sale>> PostSale(Sale sale)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -135,7 +135,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("sale/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteSale(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

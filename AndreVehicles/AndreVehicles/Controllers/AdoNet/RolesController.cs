@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("role/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Role>>> GetRole()
         {
             var roles = new List<Role>();
@@ -44,7 +44,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(roles);
         }
 
-        [HttpGet("role/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Role>> GetRole(int id)
         {
             Role role = null;
@@ -74,7 +74,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(role);
         }
 
-        [HttpPut("role/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutRole(int id, Role role)
         {
             if (id != role.Id)
@@ -100,7 +100,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("role/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Role>> PostRole(Role role)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("role/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteRole(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("carJob/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<CarJobDTO>>> GetCarJob()
         {
             var carJobs = new List<CarJobDTO>();
@@ -47,7 +47,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(carJobs);
         }
 
-        [HttpGet("carJob/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<CarJobDTO>> GetCarJob(int id)
         {
             CarJobDTO carJob = null;
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(carJob);
         }
 
-        [HttpPut("carJob/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutCarJob(int id, CarJobDTO carJobDTO)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -102,7 +102,7 @@ namespace AndreVehicles.Controllers.AdoNet
         }
 
 
-        [HttpPost("carJob/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<CarJob>> PostCarJob(CarJobDTO carJobDTO)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -167,7 +167,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("carJob/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteCarJob(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

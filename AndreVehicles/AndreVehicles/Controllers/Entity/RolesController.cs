@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("role/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Role>>> GetRole()
         {
             return await _context.Role.ToListAsync();
         }
 
-        [HttpGet("role/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Role>> GetRole(int id)
         {
             var role = await _context.Role.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return role;
         }
 
-        [HttpPut("role/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutRole(int id, Role role)
         {
             if (id != role.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("role/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Role>> PostRole(Role role)
         {
             _context.Role.Add(role);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetRole", new { id = role.Id }, role);
         }
 
-        [HttpDelete("role/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteRole(int id)
         {
             var role = await _context.Role.FindAsync(id);

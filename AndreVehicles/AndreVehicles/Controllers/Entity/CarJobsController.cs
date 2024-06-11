@@ -22,13 +22,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("carjob/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<CarJob>>> GetCarJob()
         {
             return await _context.CarJob.Include(cj => cj.Car).Include(cj => cj.Job).ToListAsync();
         }
 
-        [HttpGet("carjob/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<CarJob>> GetCarJob(int? id)
         {
             var carJob = await _context.CarJob.Include(cj => cj.Car).Include(cj => cj.Job).FirstOrDefaultAsync(cj => cj.Id == id);
@@ -41,7 +41,7 @@ namespace AndreVehicles.Controllers.Entity
             return carJob;
         }
 
-        [HttpPut("carjob/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutCarJob(int? id, CarJob carJob)
         {
             if (id != carJob.Id)
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("carjob/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<CarJob>> PostCarJob(CarJobDTO carJobDTO)
         {
             CarJob carJob = new CarJob(carJobDTO);
@@ -85,7 +85,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetCarJob", new { id = carJob.Id }, carJob);
         }
 
-        [HttpDelete("carjob/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteCarJob(int? id)
         {
             var carJob = await _context.CarJob.FindAsync(id);

@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("pixtype/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<PixType>>> GetPixType()
         {
             var pixtypes = new List<PixType>();
@@ -44,7 +44,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(pixtypes);
         }
 
-        [HttpGet("pixtype/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<PixType>> GetPixType(int id)
         {
             PixType pixtype = null;
@@ -74,7 +74,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(pixtype);
         }
 
-        [HttpPut("pixtype/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutPixType(int id, PixType pixtype)
         {
             if (id != pixtype.Id)
@@ -100,7 +100,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("pixtype/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<PixType>> PostPixType(PixType pixtype)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("pixtype/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeletePixType(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

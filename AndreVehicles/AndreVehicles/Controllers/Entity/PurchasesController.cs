@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("purchase/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchase()
         {
             return await _context.Purchase.ToListAsync();
         }
 
-        [HttpGet("purchase/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Purchase>> GetPurchase(int? id)
         {
             var purchase = await _context.Purchase.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return purchase;
         }
 
-        [HttpPut("purchase/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutPurchase(int? id, Purchase purchase)
         {
             if (id != purchase.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("purchase/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
         {
             _context.Purchase.Add(purchase);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
         }
 
-        [HttpDelete("/purchase/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeletePurchase(int? id)
         {
             var purchase = await _context.Purchase.FindAsync(id);

@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("card/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Card>>> GetCard()
         {
             return await _context.Card.ToListAsync();
         }
 
-        [HttpGet("card/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Card>> GetCard(string id)
         {
             var card = await _context.Card.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return card;
         }
 
-        [HttpPut("card/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutCard(string id, Card card)
         {
             if (id != card.CardNumber)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("card/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Card>> PostCard(Card card)
         {
             _context.Card.Add(card);
@@ -92,7 +92,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetCard", new { id = card.CardNumber }, card);
         }
 
-        [HttpDelete("card/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteCard(string id)
         {
             var card = await _context.Card.FindAsync(id);

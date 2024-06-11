@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("ticket/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
         {
             return await _context.Ticket.ToListAsync();
         }
 
-        [HttpGet("ticket/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
             var ticket = await _context.Ticket.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return ticket;
         }
 
-        [HttpPut("ticket/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutTicket(int id, Ticket ticket)
         {
             if (id != ticket.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("ticket/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
         {
             _context.Ticket.Add(ticket);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
         }
 
-        [HttpDelete("ticket/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
             var ticket = await _context.Ticket.FindAsync(id);

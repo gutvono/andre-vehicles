@@ -22,13 +22,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("address/entity")]
+        [HttpGet("entity")]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddress()
         {
             return await _context.Address.ToListAsync();
         }
 
-        [HttpGet("address/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);
@@ -41,7 +41,7 @@ namespace AndreVehicles.Controllers.Entity
             return address;
         }
 
-        [HttpPut("address/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
             if (id != address.Id)
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("address/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Address>> PostAddress(AddressDTO addressDto)
         {
             _context.Address.Add(new Address
@@ -89,7 +89,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetAddress", addressDto);
         }
 
-        [HttpDelete("address/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
             var address = await _context.Address.FindAsync(id);

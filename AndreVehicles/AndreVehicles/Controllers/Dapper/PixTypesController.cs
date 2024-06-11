@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("pixtype/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<PixType>>> GetPixType()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("pixtype/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<PixType>> GetPixType(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("pixtype/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutPixType(int id, PixType pixtype)
         {
             if (id.Equals(pixtype.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("pixtype/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<PixType>> PostPixType(PixType pixtype)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("pixtype/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeletePixType(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

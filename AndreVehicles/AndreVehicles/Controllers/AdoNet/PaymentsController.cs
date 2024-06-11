@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("payment/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayment()
         {
             var payments = new List<Payment>();
@@ -47,7 +47,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(payments);
         }
 
-        [HttpGet("payment/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Payment>> GetPayment(int id)
         {
             Payment payment = null;
@@ -80,7 +80,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(payment);
         }
 
-        [HttpPut("payment/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutPayment(int id, Payment payment)
         {
             if (id != payment.Id)
@@ -109,7 +109,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("payment/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -127,7 +127,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("payment/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("purchase/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchase()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("purchase/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Purchase>> GetPurchase(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("purchase/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutPurchase(int id, Purchase purchase)
         {
             if (id.Equals(purchase.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("purchase/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("purchase/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeletePurchase(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

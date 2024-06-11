@@ -24,7 +24,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("car/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
             var cars = new List<Car>();
@@ -51,7 +51,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(cars);
         }
 
-        [HttpGet("car/adonet/{Plate}")]
+        [HttpGet("adonet/{Plate}")]
         public async Task<ActionResult<Car>> GetCar(string plate)
         {
             Car car = null;
@@ -85,7 +85,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(car);
         }
 
-        [HttpPut("car/adonet/{Plate}")]
+        [HttpPut("adonet/{Plate}")]
         public async Task<IActionResult> PutCar(string plate, Car car)
         {
             if (plate != car.Plate)
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("car/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -135,7 +135,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("car/adonet/{Plate}")]
+        [HttpDelete("adonet/{Plate}")]
         public async Task<IActionResult> DeleteCar(string plate)
         {
             using (var connection = new SqlConnection(_connectionString))

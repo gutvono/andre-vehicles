@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("payment/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayment()
         {
             return await _context.Payment.ToListAsync();
         }
 
-        [HttpGet("payment/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Payment>> GetPayment(int id)
         {
             var payment = await _context.Payment.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return payment;
         }
 
-        [HttpPut("payment/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutPayment(int id, Payment payment)
         {
             if (id != payment.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("payment/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
             _context.Payment.Add(payment);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetPayment", new { id = payment.Id }, payment);
         }
 
-        [HttpDelete("payment/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
             var payment = await _context.Payment.FindAsync(id);

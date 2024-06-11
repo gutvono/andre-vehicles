@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("employee/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
             return await _context.Employee.ToListAsync();
         }
 
-        [HttpGet("employee/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(string id)
         {
             var employee = await _context.Employee.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return employee;
         }
 
-        [HttpPut("employee/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutEmployee(string id, Employee employee)
         {
             if (id != employee.Document)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("employee/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             _context.Employee.Add(employee);
@@ -92,7 +92,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetEmployee", new { id = employee.Document }, employee);
         }
 
-        [HttpDelete("employee/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeleteEmployee(string id)
         {
             var employee = await _context.Employee.FindAsync(id);

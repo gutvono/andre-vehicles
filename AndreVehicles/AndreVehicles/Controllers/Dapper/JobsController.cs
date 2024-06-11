@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("job/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Job>>> GetJob()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("job/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Job>> GetJob(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("job/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
             if (id.Equals(job.Id))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("job/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("job/dapper/{id}")]
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeleteJob(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

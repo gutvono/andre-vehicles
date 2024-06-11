@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("job/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Job>>> GetJob()
         {
             var jobs = new List<Job>();
@@ -44,7 +44,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(jobs);
         }
 
-        [HttpGet("job/adonet/{id}")]
+        [HttpGet("adonet/{id}")]
         public async Task<ActionResult<Job>> GetJob(int id)
         {
             Job job = null;
@@ -74,7 +74,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(job);
         }
 
-        [HttpPut("job/adonet/{id}")]
+        [HttpPut("adonet/{id}")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
             if (id != job.Id)
@@ -100,7 +100,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("job/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("job/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteJob(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

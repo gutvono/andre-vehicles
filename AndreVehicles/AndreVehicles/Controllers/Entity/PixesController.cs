@@ -21,13 +21,13 @@ namespace AndreVehicles.Controllers.Entity
             _context = context;
         }
 
-        [HttpGet("pixe/entity/")]
+        [HttpGet("entity/")]
         public async Task<ActionResult<IEnumerable<Pix>>> GetPix()
         {
             return await _context.Pix.ToListAsync();
         }
 
-        [HttpGet("pixe/entity/{id}")]
+        [HttpGet("entity/{id}")]
         public async Task<ActionResult<Pix>> GetPix(int id)
         {
             var pix = await _context.Pix.FindAsync(id);
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Entity
             return pix;
         }
 
-        [HttpPut("pixe/entity/{id}")]
+        [HttpPut("entity/{id}")]
         public async Task<IActionResult> PutPix(int id, Pix pix)
         {
             if (id != pix.Id)
@@ -69,7 +69,7 @@ namespace AndreVehicles.Controllers.Entity
             return NoContent();
         }
 
-        [HttpPost("pixe/entity/")]
+        [HttpPost("entity/")]
         public async Task<ActionResult<Pix>> PostPix(Pix pix)
         {
             _context.Pix.Add(pix);
@@ -78,7 +78,7 @@ namespace AndreVehicles.Controllers.Entity
             return CreatedAtAction("GetPix", new { id = pix.Id }, pix);
         }
 
-        [HttpDelete("pixe/entity/{id}")]
+        [HttpDelete("entity/{id}")]
         public async Task<IActionResult> DeletePix(int id)
         {
             var pix = await _context.Pix.FindAsync(id);

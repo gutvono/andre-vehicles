@@ -11,6 +11,8 @@ using Microsoft.Data.SqlClient;
 using Model;
 using System.Configuration;
 using Newtonsoft.Json;
+using AndreVehicles.Services;
+using Model.DTO;
 
 namespace AndreVehicles.Controllers.Dapper
 {
@@ -20,18 +22,21 @@ namespace AndreVehicles.Controllers.Dapper
     {
         private readonly string _connectionString;
         private readonly Config QueryFile;
+        private readonly AddressService _addressService;
 
-        public AddressesController()
+        public AddressesController(AddressService addressService)
         {
             using (var reader = new StreamReader(@".\Controllers\Query.json"))
             {
+                _addressService = addressService;
+
                 string json = reader.ReadToEnd();
                 QueryFile = JsonConvert.DeserializeObject<Config>(json);
                 _connectionString = QueryFile.ConnectionString;
             }
         }
 
-        [HttpGet("address/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddress()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -41,7 +46,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("address/dapper/{id}")]
+        [HttpGet("dapper/{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -57,7 +62,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("address/dapper/{id}")]
+        [HttpPut("dapper/{id}")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
             if (id != address.Id)
@@ -78,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("address/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Address>> PostAddress(Address address)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -91,7 +96,10 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("address/dapper/{id}")]
+        [HttpPost("dapper/{cep:length(8)}")]
+        public ActionResult<AddressViacepDTO> GetViacepAddress(string cep) => _addressService.GetViacepAddress(cep).Result;
+
+        [HttpDelete("dapper/{id}")]
         public async Task<IActionResult> DeleteAddress(int id)
         {
             using (var connection = new SqlConnection(_connectionString))

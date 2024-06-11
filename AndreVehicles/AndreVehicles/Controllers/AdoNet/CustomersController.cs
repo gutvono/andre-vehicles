@@ -21,7 +21,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("customer/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
             var customers = new List<Customer>();
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(customers);
         }
 
-        [HttpGet("customer/adonet/{document}")]
+        [HttpGet("adonet/{document}")]
         public async Task<ActionResult<Customer>> GetCustomer(string document)
         {
             Customer customer = null;
@@ -84,7 +84,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(customer);
         }
 
-        [HttpPut("customer/adonet/{document}")]
+        [HttpPut("adonet/{document}")]
         public async Task<IActionResult> PutCustomer(string document, Customer customer)
         {
             if (document != customer.Document)
@@ -115,7 +115,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("customer/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -136,7 +136,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("customer/adonet/{document}")]
+        [HttpDelete("adonet/{document}")]
         public async Task<IActionResult> DeleteCustomer(string document)
         {
             using (var connection = new SqlConnection(_connectionString))

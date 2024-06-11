@@ -22,7 +22,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpGet("card/adonet")]
+        [HttpGet("adonet")]
         public async Task<ActionResult<IEnumerable<Card>>> GetCardes()
         {
             var cards = new List<Card>();
@@ -47,7 +47,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(cards);
         }
 
-        [HttpGet("card/adonet/{CardNumber}")]
+        [HttpGet("adonet/{CardNumber}")]
         public async Task<ActionResult<Card>> GetCard(string cardNumber)
         {
             Card card = null;
@@ -79,7 +79,7 @@ namespace AndreVehicles.Controllers.AdoNet
             return Ok(card);
         }
 
-        [HttpPut("card/adonet/{CardNumber}")]
+        [HttpPut("adonet/{CardNumber}")]
         public async Task<IActionResult> PutCard(string cardNumber, Card card)
         {
             if (cardNumber != card.CardNumber)
@@ -107,7 +107,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpPost("card/adonet")]
+        [HttpPost("adonet")]
         public async Task<ActionResult<Card>> PostCard(Card card)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -125,7 +125,7 @@ namespace AndreVehicles.Controllers.AdoNet
             }
         }
 
-        [HttpDelete("card/adonet/{id}")]
+        [HttpDelete("adonet/{id}")]
         public async Task<IActionResult> DeleteCard(string cardNumber)
         {
             using (var connection = new SqlConnection(_connectionString))

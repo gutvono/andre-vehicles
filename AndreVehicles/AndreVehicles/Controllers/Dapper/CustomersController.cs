@@ -23,7 +23,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("customer/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -33,7 +33,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("customer/dapper/{document}")]
+        [HttpGet("dapper/{document}")]
         public async Task<ActionResult<Customer>> GetCustomer(string document)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -49,7 +49,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("customer/dapper/{document}")]
+        [HttpPut("dapper/{document}")]
         public async Task<IActionResult> PutCustomer(string document, Customer customer)
         {
             if (document.Equals(customer.Document))
@@ -70,7 +70,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("customer/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -83,7 +83,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("customer/dapper/{document}")]
+        [HttpDelete("dapper/{document}")]
         public async Task<IActionResult> DeleteCustomer(string document)
         {
             using (var connection = new SqlConnection(_connectionString))

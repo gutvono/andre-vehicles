@@ -30,7 +30,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("card/dapper")]
+        [HttpGet("dapper")]
         public async Task<ActionResult<IEnumerable<Card>>> GetCard()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -40,7 +40,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpGet("card/dapper/{CardNumber}")]
+        [HttpGet("dapper/{CardNumber}")]
         public async Task<ActionResult<Card>> GetCard(string CardNumber)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -56,7 +56,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPut("card/dapper/{CardNumber}")]
+        [HttpPut("dapper/{CardNumber}")]
         public async Task<IActionResult> PutCard(string cardNumber, Card card)
         {
             if (cardNumber != card.CardNumber)
@@ -77,7 +77,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpPost("card/dapper/")]
+        [HttpPost("dapper/")]
         public async Task<ActionResult<Card>> PostCard(Card card)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -90,7 +90,7 @@ namespace AndreVehicles.Controllers.Dapper
             }
         }
 
-        [HttpDelete("card/dapper/{CardNumber}")]
+        [HttpDelete("dapper/{CardNumber}")]
         public async Task<IActionResult> DeleteCard(int cardNumber)
         {
             using (var connection = new SqlConnection(_connectionString))
